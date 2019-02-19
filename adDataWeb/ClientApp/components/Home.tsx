@@ -7,13 +7,13 @@ export default class Home extends React.Component<RouteComponentProps<{}>, {}> {
             <h1>Publication Ad Activity</h1>
             <p>Single-page application, built with:</p>
             <ul>
-                <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-                <li>Entity Framework and SQL Database to persist data from API</li>
+                <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code. Used Dependency Injection as much as possible</li>
+                <li>Entity Framework and SQL Server Express LocalDB to persist data from API</li>
                 <li><a href='https://facebook.github.io/react/'>React</a>, <a href='http://redux.js.org'>Redux</a>, and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
                 <li><a href='https://webpack.github.io/'>Webpack</a> for building and bundling client-side resources</li>
                 <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
                 <li>Azure</li>
-                <li>Docker</li>
+                <li>Docker for targeting Linux distributions</li>
             </ul>
             <p>Test API method called PublicationAdActivity</p>
             <ul>

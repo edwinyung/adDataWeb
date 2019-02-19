@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using adDataWeb.Interfaces;
+using adDataWeb.Models;
 
 namespace adDataWeb.Controllers
 {
@@ -36,20 +37,6 @@ namespace adDataWeb.Controllers
             }
 
             return null;
-        }
-
-        public class Advertiser
-        {
-            public string Month { get; set; }
-            public int PublicationId { get; set; }
-            public string PublicationName { get; set; }
-            public string ParentCompany { get; set; }
-            public int ParentCompanyId { get; set; }
-            public string BrandName { get; set; }
-            public int BrandId { get; set; }
-            public string ProductCategory { get; set; }
-            public float AdPages { get; set; }
-            public int EstPrintSpend { get; set; }
         }
 
     }
