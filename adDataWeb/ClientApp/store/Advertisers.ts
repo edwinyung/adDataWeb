@@ -50,7 +50,7 @@ type KnownAction = RequestFullListAdvertisersAction | ReceiveFullListAdvertisers
 export const actionCreators = {
     requestAdvertisers: (startDateIndex: number): AppThunkAction<KnownAction> => (dispatch, getState) => {
         // Only load data if it's something we don't already have (and are not already loading)
-        if (startDateIndex !== getState().weatherForecasts.startDateIndex) {
+        if (startDateIndex !== getState().advertisers.startDateIndex) {
             let fetchTask = fetch(`api/AdData/FullListAdvertisers?page=${startDateIndex}&take=${50}&sort='ddf'`)
                 .then(response => response.json() as Promise<Advertiser[]>)
                 .then(data => {

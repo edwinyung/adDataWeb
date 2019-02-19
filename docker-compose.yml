@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  addata:
+    image: addata
+    build:
+      context: .
+      dockerfile: adDataWeb/Dockerfile
