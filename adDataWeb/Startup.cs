@@ -46,11 +46,12 @@ namespace adDataWeb
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "293d6276c7f44b9bbae21d85794656b5");
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<AdvertiserContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("AdvertiserContext")));
+               options.UseSqlServer(Configuration.GetConnectionString("AdvertiserContext")));
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

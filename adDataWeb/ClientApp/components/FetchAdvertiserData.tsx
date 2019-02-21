@@ -15,25 +15,38 @@ type AdvertisersProps =
 
 class FetchAdvertiserData extends React.Component<AdvertisersProps, {}> {
 
+    ladder() {
+        let url: string = this.props.location.pathname.split('/')[1];
+        let startDateIndex = parseInt(this.props.match.params.startDateIndex) || 0;
+        if (url === 'fetchadvertiserdata') {
+            this.props.requestAdvertisers(startDateIndex);
+        } else if (url === 'fetchbranddata') {
+            this.props.requestBrands(startDateIndex);
+        } else if (url === 'fetchproductcategoriesdata') {
+            this.props.requestProductCategories(startDateIndex);
+        } else if (url === 'fetchparentcompaniesdata') {
+            this.props.requestParentCompanies(startDateIndex);
+        }
+    }
+
     // This method runs when the component is first added to the page
     constructor(props: AdvertisersProps) {
-        super(props)
-        let startDateIndex = parseInt(this.props.match.params.startDateIndex) || 0;
-        this.props.requestAdvertisers(startDateIndex);
+        super(props);
+        this.props.location.pathname
+        this.ladder();
     }
 
     componentDidUpdate(prevProps: AdvertisersProps) {
         // This method runs when incoming props (e.g., route params) change
         if (prevProps.match.params !== this.props.match.params) {
-            let startDateIndex = parseInt(this.props.match.params.startDateIndex) || 0;
-            this.props.requestAdvertisers(startDateIndex);
+            this.ladder();
         }
     }
 
     public render() {
         return <div>
-            <h1>Full List Advertisers</h1>
-            <p>Displays everything.</p>
+            <h1>List</h1>
+            <p>Ad Data</p>
             {this.renderAdvertisersTable()}
             {this.renderPagination()}
         </div>;
@@ -75,12 +88,14 @@ class FetchAdvertiserData extends React.Component<AdvertisersProps, {}> {
     }
 
     private renderPagination() {
-        let prevStartDateIndex = (this.props.startDateIndex || 0) - 50;
-        let nextStartDateIndex = (this.props.startDateIndex || 0) + 50;
-
+        let prevStartDateIndex = (this.props.startDateIndex || 1) - 1;
+        let nextStartDateIndex = (this.props.startDateIndex || 1) + 1;
+        let url = this.props.location.pathname.split('/')[1]
         return <p className='clearfix text-center'>
-            <Link className='btn btn-default pull-left' to={`/fetchadvertiserdata/${prevStartDateIndex}`}>Previous</Link>
-            <Link className='btn btn-default pull-right' to={`/fetchadvertiserdata/${nextStartDateIndex}`}>Next</Link>
+            {this.props.startDateIndex === 1 || this.props.startDateIndex === 0 || this.props.startDateIndex === null ? '' :
+                < Link className='btn btn-default pull-left' to={`/${url}/${prevStartDateIndex}`}>Previous</Link>
+            }
+            <Link className='btn btn-default pull-right' to={`/${url}/${nextStartDateIndex}`}>Next</Link>
             {this.props.isLoading ? <span>Loading...</span> : []}
         </p>;
     }

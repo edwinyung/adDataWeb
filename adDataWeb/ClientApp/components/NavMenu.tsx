@@ -27,6 +27,21 @@ export class NavMenu extends React.Component<{}, {}> {
                                 <span className='glyphicon glyphicon-th-list'></span> Full list of Advertiser Data
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to={'/fetchbranddata'} activeClassName='active'>
+                                <span className='glyphicon glyphicon-th-list'></span> Selected Brands Data
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={'/fetchproductcategoriesdata'} activeClassName='active'>
+                                <span className='glyphicon glyphicon-th-list'></span> Selected Product Categories Data
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={'/fetchparentcompaniesdata'} activeClassName='active'>
+                                <span className='glyphicon glyphicon-th-list'></span> Selected Parent Companies Data
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>

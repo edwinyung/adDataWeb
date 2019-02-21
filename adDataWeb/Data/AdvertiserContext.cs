@@ -14,6 +14,12 @@ namespace adDataWeb.Models
         {
         }
 
-        public DbSet<adDataWeb.Models.Advertiser> Advertiser { get; set; }
+        public DbSet<Advertiser> Advertiser { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Advertiser>().ToTable("Advertiser", "dbo");
+        }
+
     }
 }

@@ -51,7 +51,46 @@ export const actionCreators = {
     requestAdvertisers: (startDateIndex: number): AppThunkAction<KnownAction> => (dispatch, getState) => {
         // Only load data if it's something we don't already have (and are not already loading)
         if (startDateIndex !== getState().advertisers.startDateIndex) {
-            let fetchTask = fetch(`api/AdData/FullListAdvertisers?page=${startDateIndex}&take=${50}&sort='ddf'`)
+            let fetchTask = fetch(`api/AdData/FullListAdvertisers?page=${startDateIndex}&pageSize=${5}&sortOrder='default'`)
+                .then(response => response.json() as Promise<Advertiser[]>)
+                .then(data => {
+                    dispatch({ type: 'RECEIVE_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex, advertisers: data });
+                }).catch(response => console.log(response))
+
+            addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
+            dispatch({ type: 'REQUEST_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex });
+        }
+    },
+    requestBrands: (startDateIndex: number): AppThunkAction<KnownAction> => (dispatch, getState) => {
+        // Only load data if it's something we don't already have (and are not already loading)
+        if (startDateIndex !== getState().advertisers.startDateIndex) {
+            let fetchTask = fetch(`api/AdData/TopBrandNames?page=${startDateIndex}&pageSize=${5}&sortOrder='default'`)
+                .then(response => response.json() as Promise<Advertiser[]>)
+                .then(data => {
+                    dispatch({ type: 'RECEIVE_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex, advertisers: data });
+                }).catch(response => console.log(response))
+
+            addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
+            dispatch({ type: 'REQUEST_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex });
+        }
+    },
+    requestProductCategories: (startDateIndex: number): AppThunkAction<KnownAction> => (dispatch, getState) => {
+        // Only load data if it's something we don't already have (and are not already loading)
+        if (startDateIndex !== getState().advertisers.startDateIndex) {
+            let fetchTask = fetch(`api/AdData/TopProductCategories?page=${startDateIndex}&pageSize=${5}&sortOrder='default'`)
+                .then(response => response.json() as Promise<Advertiser[]>)
+                .then(data => {
+                    dispatch({ type: 'RECEIVE_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex, advertisers: data });
+                }).catch(response => console.log(response))
+
+            addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
+            dispatch({ type: 'REQUEST_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex });
+        }
+    },
+    requestParentCompanies: (startDateIndex: number): AppThunkAction<KnownAction> => (dispatch, getState) => {
+        // Only load data if it's something we don't already have (and are not already loading)
+        if (startDateIndex !== getState().advertisers.startDateIndex) {
+            let fetchTask = fetch(`api/AdData/TopParentCompanies?page=${startDateIndex}&pageSize=${5}&sortOrder='default'`)
                 .then(response => response.json() as Promise<Advertiser[]>)
                 .then(data => {
                     dispatch({ type: 'RECEIVE_FULL_LIST_ADVERTISERS', startDateIndex: startDateIndex, advertisers: data });
