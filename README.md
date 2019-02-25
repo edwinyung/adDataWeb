@@ -17,7 +17,7 @@ additional information about the publication in which the advertiser's advertise
    
 		
 
-A full list advertisers, including all object data (Month, Publication Id, Publication Name, Parent Company, Parent Company Id, Brand Name, Brand Id, Product Category, Ad Pages and Estimated Print Spend). This list should be sortable and paged with either client-side or server-side code. Default sort should be by brand name alphabetically.</li>
+Page 1 and Page 2 of the full list of advertisers, including all data, done by the server side. Default sort is by brand name alphabetically.</li>
 				![FullListofAds-Page1](https://github.com/edwinyung/adDataWeb/blob/master/adDataWeb/Images/FulllistofAds-Page1.png)
 				![FullListofAds-Page2](https://github.com/edwinyung/adDataWeb/blob/master/adDataWeb/Images/FulllistofAds-Page2.png)
 
@@ -26,7 +26,7 @@ product category. This list should also be sortable and paged. Default sort by b
 
 ![SelectedBrands](https://github.com/edwinyung/adDataWeb/blob/master/adDataWeb/Images/SelectedBrands.png)
 
-The top five Product Categories by estimated spend. Default sort by number of pages (descending), then product category alphabetically.
+The top five Product Categories by estimated spend. Default sort by estimated spend (descending), then product category alphabetically.
 ![SelectedProductCategories](https://github.com/edwinyung/adDataWeb/blob/master/adDataWeb/Images/SelectedProductCategories.png)
 
 The top five Parent Companies by number of pages, then estimated spend during a single month. Keep in mind that a Parent Company may run ads in multiple issues / months. Default sort by number of pages (descending), estimated spend (descending), then Parent Company alphabetically.
