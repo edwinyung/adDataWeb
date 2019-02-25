@@ -76,9 +76,13 @@ namespace adDataWeb.Controllers
             try
             {
 
-                var advertisers = (from row in _context.Advertiser select row).Take(5);
-
-                advertisers = advertisers.OrderByDescending(s => s.AdPages).ThenByDescending(n => n.EstPrintSpend).ThenBy(l => l.ParentCompany);
+                var advertisers = _context.Advertiser.GroupBy(x => x.ProductCategory)
+                            .Select(g => new
+                            Advertiser
+                            {
+                                ProductCategory = g.Key,
+                                EstPrintSpend = g.Sum(x => x.EstPrintSpend)
+                            }).OrderByDescending(i => i.EstPrintSpend).Take(5);
 
                 if (String.IsNullOrEmpty(page.ToString()) == true || page <= 0) page = 1;
 
@@ -99,15 +103,18 @@ namespace adDataWeb.Controllers
         {
             try
             {
-                var advertisers = (from row in _context.Advertiser
-                                   group row by new { row.ParentCompany, row.Month } into par
-                                   select par).Take(5);
+                var advertisers = _context.Advertiser.GroupBy(x => new { x.ParentCompany, x.Month })
+                          .Select(g => new
+                          Advertiser
+                          {
+                              ParentCompany = g.Key.ParentCompany,
+                              AdPages = g.Sum(q => q.AdPages),
+                              EstPrintSpend = g.Sum(y => y.EstPrintSpend)
+                          }).OrderByDescending(i => i.AdPages).ThenByDescending(d => d.EstPrintSpend).ThenBy(z => z.ParentCompany).Take(5);
 
-                //advertisers = advertisers.OrderByDescending(s => s.AdPages).ThenByDescending(n => n.EstPrintSpend).ThenBy(l => l.ParentCompany);
+                if (String.IsNullOrEmpty(page.ToString()) == true || page <= 0) page = 1;
 
-                //if (String.IsNullOrEmpty(page.ToString()) == true || page <= 0) page = 1;
-
-                //return await PaginatedList<Advertiser>.CreateAsync(advertisers.AsNoTracking(), page, pageSize);
+                return await PaginatedList<Advertiser>.CreateAsync(advertisers.AsNoTracking(), page, pageSize);
 
             }
             catch (HttpRequestException e)

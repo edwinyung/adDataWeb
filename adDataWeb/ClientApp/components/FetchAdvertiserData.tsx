@@ -32,13 +32,15 @@ class FetchAdvertiserData extends React.Component<AdvertisersProps, {}> {
     // This method runs when the component is first added to the page
     constructor(props: AdvertisersProps) {
         super(props);
-        this.props.location.pathname
+    }
+
+    componentDidMount() {
         this.ladder();
     }
 
-    componentDidUpdate(prevProps: AdvertisersProps) {
+    componentDidUpdate(prevProps: AdvertisersProps, prevState: AdvertisersProps) {
         // This method runs when incoming props (e.g., route params) change
-        if (prevProps.match.params !== this.props.match.params) {
+        if (prevProps.location !== this.props.location) {
             this.ladder();
         }
     }
@@ -95,7 +97,9 @@ class FetchAdvertiserData extends React.Component<AdvertisersProps, {}> {
             {this.props.startDateIndex === 1 || this.props.startDateIndex === 0 || this.props.startDateIndex === null ? '' :
                 < Link className='btn btn-default pull-left' to={`/${url}/${prevStartDateIndex}`}>Previous</Link>
             }
-            <Link className='btn btn-default pull-right' to={`/${url}/${nextStartDateIndex}`}>Next</Link>
+            {(url !== "fetchadvertiserdata") ? '' :
+                <Link className='btn btn-default pull-right' to={`/${url}/${nextStartDateIndex}`}>Next</Link>
+            }
             {this.props.isLoading ? <span>Loading...</span> : []}
         </p>;
     }
